@@ -138,5 +138,11 @@ public Space() {
      */    
     private void wallCollissions() {
         //TODO Implement this method
+        
+        
+        
+        
+        
+        
     }
 }

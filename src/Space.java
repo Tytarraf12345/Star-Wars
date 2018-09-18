@@ -16,8 +16,8 @@ public Space() {
     super();
     marginX = 1;
     marginY = 1;
-    hero = new Hero(600, 480, Color.YELLOW, 20 , "Ty");
-    enemy = new Enemy (200,200, Color.RED, 20,"Enemy");
+    hero = new Hero(600, 480, Color.YELLOW, 50 , "Ty");
+    enemy = new Enemy (200,200, Color.RED, 50,"Enemy");
      timer = new Timer();
      timer.scheduleAtFixedRate(new ScheduleTask(), 100, 100);
     
@@ -40,7 +40,8 @@ public Space() {
     
         @Override
         public void run() {
-            
+        wallCollissions(hero); 
+        wallCollissions(enemy); 
         hero.update();
         enemy.update();
         repaint();
@@ -100,22 +101,32 @@ public Space() {
         int x = 0;
         int y = 0;
      
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 100; i++) {
            int color = (int)(Math.random()*6 +1);
+           int s = 2;
            if(color == 1) {
-                g.setColor(Color.CYAN);
+                g.setColor(Color.WHITE);
+                s = 5;
             }
            else if(color == 2){
-                g.setColor(Color.YELLOW);
+                g.setColor(Color.CYAN);
+                s = 10;
             }
-            else if(color == 3) {
-                g.setColor(Color.RED);
+           else if(color == 3) {
+                g.setColor(Color.GREEN);
+                s = 15;
             }
            else if(color == 4) {
-                g.setColor(Color.WHITE);
+                g.setColor(Color.BLUE);
+                s = 20;
             }
            else if(color == 5) {
                 g.setColor(Color.MAGENTA);
+                s = 25;
+           }
+           else if(color == 6) {
+                g.setColor(Color.PINK);
+                s = 30;
            }
            
 
@@ -124,22 +135,35 @@ public Space() {
           x = (int) (Math.random() * 1100);
           y = (int) (Math.random() * 860);
           
-          g.fillOval(x, y, 2, 2);
+          g.fillOval(x, y, s, s);
+         
           
           System.out.println (x+" "+y);
-          if ( x > 1100 || y > 860) {
-              break;
-          }
+          //if ( x > 1100 || y > 860) {
+             // break;
+          //}
     }
     }
         
     /**
      * Makes the hero and enemy bounce off walls
      */    
-    private void wallCollissions() {
+    private void wallCollissions(Character c) {
         //TODO Implement this method
-        
-        
+            //walls = this,getWidth(),getHeight(), 0
+            //where the hero is = hero.getX.(),hero.getY ()
+            if (c.getX() <= 0) {
+               c.reverseX(); 
+            }
+            if (c.getY() <= 0) {
+               c.reverseY(); 
+            }
+            if (c.getX() + 50 >= this.getWidth() ) {
+               c.reverseX(); 
+            }
+            if (c.getY()+ 50>= this.getHeight() ) {
+               c.reverseY(); 
+            }
         
         
         

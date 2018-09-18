@@ -16,8 +16,8 @@ public class Character {
     //Fields (Variables)
     private int x;
     private int y;
-    private int dx;
-    private int dy;
+    private int dx;//speed
+    private int dy;//speed
     private Color color;
     private int size;
     private String name;
@@ -103,7 +103,9 @@ public class Character {
     public void kill() {
         grow();
     }
-        /**
+    
+
+    /**
      * Makes the character "bounce" and reverse direction on X axis 
      */
     
@@ -111,7 +113,7 @@ public class Character {
     
     public void reverseX() {
         //TODO Implement this method
-        
+        x = -5;
         
         
     }
@@ -125,7 +127,7 @@ public class Character {
     
     public void reverseY() {
         //TODO Implement this method
-        
+        y = -5; 
         
         
     }

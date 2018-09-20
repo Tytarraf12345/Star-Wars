@@ -16,8 +16,8 @@ public Space() {
     super();
     marginX = 1;
     marginY = 1;
-    hero = new Hero(600, 480, Color.YELLOW, 50 , "Ty");
-    enemy = new Enemy (200,200, Color.RED, 50,"Enemy");
+    hero = new Hero(300, 300, Color.YELLOW, 25 , "Ty");
+    enemy = new Enemy (200,200, Color.RED, 25,"Enemy");
      timer = new Timer();
      timer.scheduleAtFixedRate(new ScheduleTask(), 100, 100);
     
@@ -30,10 +30,12 @@ public Space() {
         
         g.setColor(Color.YELLOW);
         drawStars(g);
-        
+        heroVsEnemy();
         hero.draw(g);
+        
         enemy.draw(g);
-     
+       
+        
        //g.dispose();  
     }
         private class ScheduleTask extends TimerTask {
@@ -101,7 +103,7 @@ public Space() {
         int x = 0;
         int y = 0;
      
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
            int color = (int)(Math.random()*6 +1);
            int s = 2;
            if(color == 1) {
@@ -132,7 +134,7 @@ public Space() {
 
             
             
-          x = (int) (Math.random() * 1100);
+          x = (int) (Math.random() * 1200);
           y = (int) (Math.random() * 860);
           
           g.fillOval(x, y, s, s);
@@ -144,7 +146,20 @@ public Space() {
           //}
     }
     }
-        
+    
+
+    private void heroVsEnemy () {
+        //if (hero.getX() >= enemy.getX() && hero.getY() >= enemy.getY () ){
+        //hero.kill(enemy);
+        //} 
+       // if (hero.getX() <= enemy.getX() && hero.getY() <= enemy.getY () ){
+        //hero.kill(enemy);
+        //} 
+         if (hero.getX() + 40 >= enemy.getX() && hero.getY() + 40 >= enemy.getY () && hero.getX() + 20 <= enemy.getX() && hero.getY() + 20 <= enemy.getY () ){
+        hero.kill(enemy);
+        } 
+    }
+    
     /**
      * Makes the hero and enemy bounce off walls
      */    
@@ -152,21 +167,13 @@ public Space() {
         //TODO Implement this method
             //walls = this,getWidth(),getHeight(), 0
             //where the hero is = hero.getX.(),hero.getY ()
-            if (c.getX() <= 0) {
+            if (c.getX() <= 0 || c.getX() + 50 >= this.getWidth()) {
                c.reverseX(); 
             }
-            if (c.getY() <= 0) {
+            if (c.getY() <= 0 || c.getY()+ 50>= this.getHeight()) {
                c.reverseY(); 
             }
-            if (c.getX() + 50 >= this.getWidth() ) {
-               c.reverseX(); 
-            }
-            if (c.getY()+ 50>= this.getHeight() ) {
-               c.reverseY(); 
-            }
-        
-        
-        
+       
         
     }
 }
